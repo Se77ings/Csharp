@@ -1,0 +1,92 @@
+﻿@page "/lista/create"
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.EntityFrameworkCore
+@using Wishlist.Components.Lista
+@using Wishlist.Data
+
+@inject IDbContextFactory<Wishlist.Data.ApplicationDbContext> DbFactory
+@inject NavigationManager NavigationManager
+@inject UserManager<ApplicationUser> UserManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+
+
+<PageTitle>Create</PageTitle>
+
+<h1>Create</h1>
+
+<h2>Lista</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <EditForm method="post" Model="Lista" OnValidSubmit="AddLista" FormName="create" Enhance>
+            <DataAnnotationsValidator />
+            <ValidationSummary class="text-danger" role="alert" />
+            <div class="mb-3">
+                <label for="name" class="form-label">Name:</label>
+                <InputText id="name" @bind-Value="Lista.Name" class="form-control" aria-required="true" />
+                <ValidationMessage For="() => Lista.Name" class="text-danger" />
+            </div>
+            <div class="mb-3">
+                <label for="prioridade" class="form-label">Prioridade:</label>
+                <InputNumber id="prioridade" @bind-Value="Lista.Prioridade" class="form-control" aria-required="true" />
+                <ValidationMessage For="() => Lista.Prioridade" class="text-danger" />
+            </div>
+            <div class="mb-3">
+                <label for="link" class="form-label">Link:</label>
+                <InputText id="link" @bind-Value="Lista.Link" class="form-control" />
+                <ValidationMessage For="() => Lista.Link" class="text-danger" />
+            </div>
+            <div class="mb-3">
+                <label for="valor" class="form-label">Valor:</label>
+                <InputNumber id="valor" @bind-Value="Lista!.Valor" class="form-control" />
+            </div>
+            <div class="mb-3" hidden>
+                <label for="userid" class="form-label">UserId:</label>
+                <InputText id="userid" @bind-Value="Lista.UserId" class="form-control" aria-required="true" />
+                <ValidationMessage For="() => Lista.UserId" class="text-danger" />
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </EditForm>
+    </div>
+</div>
+
+<div>
+    <a href="/lista">Back to List</a>
+</div>
+
+@code {
+    [SupplyParameterFromForm]
+    private Lista Lista { get; set; } = new();
+
+    // To protect from overposting attacks, see https://learn.microsoft.com/aspnet/core/blazor/forms/#mitigate-overposting-attacks.
+    private async Task AddLista()
+    {
+        using var context = DbFactory.CreateDbContext();
+        context.Lista.Add(Lista);
+        await context.SaveChangesAsync();
+        NavigationManager.NavigateTo("/lista");
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity != null && user.Identity.IsAuthenticated)
+        {
+            var appUser = await UserManager.GetUserAsync(user);
+            if (appUser != null)
+            {
+                Lista.UserId = appUser.Id;
+            }
+        }
+        else
+        {
+            // Redirecionar para login ou exibir mensagem
+            NavigationManager.NavigateTo("/login");
+        }
+    }
+
+
+}

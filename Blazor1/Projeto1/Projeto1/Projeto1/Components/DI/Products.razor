@@ -1,0 +1,28 @@
+﻿@page "/d-injection"
+@rendermode InteractiveServer
+@inject IProductService ProductService
+
+<h3>Lista de Produtos</h3>
+
+@if (products == null)
+{
+    <p>Carregando produtos....</p>
+}
+else
+{
+    <ul>
+        @foreach(var item in products)
+        {
+            <li>@item.Name - @item.Price.ToString("C")</li>
+        }
+    </ul>
+}
+
+@code {
+    private List<Product> products;
+
+    protected override async Task OnInitializedAsync()
+    {
+        products = await ProductService.GetProductsAsync();
+    }
+}

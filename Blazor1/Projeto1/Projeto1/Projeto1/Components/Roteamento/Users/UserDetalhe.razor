@@ -1,0 +1,30 @@
+﻿@page "/rotas/user/{Id:int}"
+@inject IUserService UserService
+<div class="d-flex flex-row">
+
+<NavLink href="/rotas/parametrizacao"><button class="btn btn-outline-success"> ← </button></NavLink>
+<h1 class="mx-5">Perfil do Usuário</h1>
+</div>
+@if(user == null)
+{
+    <p><em>Carregando....</em></p>
+}
+else
+{
+    <div>
+        <p>Nome: @user.Name</p>
+        <p>Email: @user.Email</p>
+    </div>
+}
+
+@code {
+
+    [Parameter]
+    public int Id{ get; set; }
+    private User user;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        user = await UserService.GetUserByIdAsync(Id);
+    }
+}

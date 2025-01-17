@@ -1,0 +1,10 @@
+﻿@rendermode InteractiveServer
+<h3>TwoWayBinding</h3>
+<input @bind="@classe" @bind:event="oninput"/>
+<p>Classe digitada: @classe</p>
+
+<a class="@classe">Btn</a>
+
+@code {
+    private string classe = "";
+}

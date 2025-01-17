@@ -1,0 +1,18 @@
+﻿@page "/render-mode-wasm"
+@rendermode InteractiveAuto
+
+   @* <div style="padding-bottom:10px;">
+       <WebAssembly />
+   </div> *@
+
+<h3>Client-side Rendering (CSR)</h3>
+
+<div class="mx-2 my-1 border bg-opacity-10 bg-warning p-2">
+<p>Aqui acima, eu tinha a chamada de um componente WebAssembly, deixei ele comentado, pois ele interfere no funcionamento de um componente Auto</p>
+<p>Caso for usar auto, lembrar que os componentes meio que "herdam" o rendermode</p>
+<p>E ao invés de eu definir um rendermode para cada um dos componentes, defini apenas um, no arquivo pai dos 2</p>
+</div>
+
+<div style="padding-bottom:10px;">
+    <Auto />
+</div>

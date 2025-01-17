@@ -1,0 +1,32 @@
+﻿@page "/erro/{codigo:int}"
+<h1>Ocorreu um erro!</h1>
+<h3 class="link-danger">@Message</h3>
+
+@code {
+    [Parameter]
+    public int codigo { get; set; }
+    public string Message { get; set; }
+
+
+    protected override void OnInitialized()
+    {
+        switch (codigo)
+        {
+            case 401:
+                Message = "Não te conheço";
+                break;
+            case 403:
+                Message = "Te conheço, mas não tem acesso";
+                break;
+            case 404:
+                Message = "Página não encontrada";
+                break;
+            case 500:
+                Message = "Erro interno";
+                break;
+            default:
+                Message = "Erro desconhecido";
+                break;
+        }
+    }
+}

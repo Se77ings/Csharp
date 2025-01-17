@@ -1,0 +1,15 @@
+﻿@rendermode InteractiveServer
+<h3>EventBinding</h3>
+<button class="btn btn-success" @onclick="Executar">Clique aqui</button>
+<p>@message</p>
+
+@code {
+    private string message = "Nenhum Clique ainda";
+
+    private void Executar()
+    {
+
+        message = $"Botão apertado às: {DateTime.Now.ToString("HH:mm:ss")}";
+
+    }
+}

@@ -1,0 +1,57 @@
+﻿@page "/rotas/parametrizacao"
+@inject IUserService UserService
+
+<h1>Perfil do Usuário</h1>
+
+<h2>Lista de Usuários</h2>
+
+ <table class="table">
+     <thead>
+         <tr>
+             <th>ID</th>
+             <th>Nome</th>
+             <th>Email</th>
+             <th>Ações</th>
+         </tr>
+     </thead>
+     <tbody>
+         @foreach (var myuser in users)
+         {
+             <tr>
+                 <td>@myuser.Id</td>
+                 <td>@myuser.Name</td>
+                 <td>@myuser.Email</td>
+                 <td><NavLink href=@($"/rotas/user/{@myuser.Id}")>Detalhes</NavLink></td>
+             </tr>
+         }
+     </tbody>
+ </table>
+
+ <br /><br /><br />
+ <h3>Tentativa de usar o componente generico:</h3>
+ 
+<TableGenerica Items="@users"
+               Headers="@headers"
+               ColumnTemplates="@template">
+</TableGenerica>
+
+
+
+@code {
+    private List<User> users;
+
+
+    public List<string> headers = new() { "ID", "Nome", "Email", "Ação" };
+    protected override async Task OnInitializedAsync()
+    {
+        users = await UserService.GetAllUserAsync();
+    }
+
+    public List<Func<User, object>> template = new()
+    {
+        item => item.Id,
+        item => item.Name,
+        item => item.Email,
+        item => item.Id
+    };
+}

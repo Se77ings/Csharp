@@ -1,0 +1,16 @@
+﻿body {
+
+}
+
+.todo-item{
+    display: flex;
+    flex-direction:"row";
+}
+
+.completed{
+
+}
+.task-completed{
+    text-decoration: line-through;
+    color:gray
+}

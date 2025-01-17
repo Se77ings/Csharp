@@ -1,0 +1,67 @@
+﻿@page "/lista"
+
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Components.QuickGrid
+@using System.Security.Claims
+@using Wishlist.Components.Lista
+@using Wishlist.Data
+
+@implements IAsyncDisposable
+
+@inject IDbContextFactory<Wishlist.Data.ApplicationDbContext> DbFactory
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject UserManager<ApplicationUser> UserManager
+@inject IHttpContextAccessor httpContextAccessor
+
+<PageTitle>Index</PageTitle>
+
+<h1>Index</h1>
+
+<p>
+    <a href="lista/create">Create New</a>
+</p>
+
+@* Não consegui achar uma boa forma para exibir apenas os itens pertencentes à este usuário.. mas pelo menos sinto que estou no caminho. *@
+
+<QuickGrid Class="table" Items="context.Lista.Where(p=> p.UserId == userId)">
+    <PropertyColumn Property="lista => lista.Name" />
+    <PropertyColumn Property="lista => lista.Prioridade" />
+    <PropertyColumn Property="lista => lista.Link" />
+
+
+    <TemplateColumn Context="lista">
+        <a href="@($"lista/edit?id={lista.Id}")">Edit</a> |
+        <a href="@($"lista/details?id={lista.Id}")">Details</a> |
+        <a href="@($"lista/delete?id={lista.Id}")">Delete</a>
+    </TemplateColumn>
+</QuickGrid>
+
+@code {
+    private ApplicationDbContext context = default!;
+    private IQueryable<Lista>? listaDoUsuario { get; set; }
+    public string? userId { get; set; }
+
+    protected override async void OnInitialized()
+    {
+        context = DbFactory.CreateDbContext();
+        var userId = httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity != null && user.Identity.IsAuthenticated)
+        {
+            var appUser = await UserManager.GetUserAsync(user);
+            if (appUser != null)
+            {
+                // listaDoUsuario = context.Lista.Where(p => p.UserId.ToString() != appUser.Id);
+                listaDoUsuario = context.Lista.Where(p => p.UserId.ToString() != "appUser.Id");
+
+            }
+        }
+    }
+
+    public async ValueTask DisposeAsync() => await context.DisposeAsync();
+}

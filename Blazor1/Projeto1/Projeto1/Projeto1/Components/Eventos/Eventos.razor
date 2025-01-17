@@ -1,0 +1,30 @@
+﻿@page "/eventos"
+@rendermode InteractiveServer
+
+<h3>Eventos</h3>
+<input @onfocus="OnFocus" @onblur="OnBlur" @onchange="OnChange" @onselect="OnSelect"/>
+<p>@msg</p>
+
+@code {
+    string msg = "";
+
+    private void OnFocus()
+    {
+        msg += "Focus, ";
+    }
+
+    private void OnBlur()
+    {
+        msg += "Blur, ";
+    }
+
+    private void OnChange()
+    {
+        msg += "Change, ";
+    }
+
+    private void OnSelect()
+    {
+        msg += "Select, ";
+    }
+}

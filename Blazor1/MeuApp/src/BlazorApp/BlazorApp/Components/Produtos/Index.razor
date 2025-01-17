@@ -1,0 +1,55 @@
+﻿@page "/produtos"
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Components.QuickGrid
+@using BlazorApp.Components.Produtos
+@using BlazorApp.Data
+@using System.Globalization
+@implements IAsyncDisposable
+@inject IDbContextFactory<BlazorApp.Data.ApplicationDbContext> DbFactory
+
+<PageTitle>Index</PageTitle>
+
+<h1>Index</h1>
+
+<p>
+    <NavLink href="produtos/novo">Create New</NavLink>
+</p>
+
+<QuickGrid Class="table" Items="context.Produto">
+    <PropertyColumn Align="Align.Center" Property="produto => produto.Nome" />
+    <PropertyColumn Align="Align.Center" Property="produto => produto.Categoria" />
+
+    <TemplateColumn Align="Align.Center" Context="produto" Title="Preço">
+        @produto.Preco.ToString("C", new CultureInfo("pt-BR"))
+    </TemplateColumn>
+    <TemplateColumn Align="Align.Center" Context="produto" Title="Disponível">
+        @if (produto.DisponivelEstoque)
+        {
+            <i class="fa-solid fa-check text-center"></i>
+        }
+        else
+        {
+            <i class="fa-solid fa-x text-center"></i>
+        }
+
+    </TemplateColumn>
+
+    <PropertyColumn Align="Align.Center" Property="produto => produto.DataValidade" Format="dd/MM/yyyy" Title="Data de Validade" />
+
+    <TemplateColumn Context="produto">
+        <NavLink href="@($"produtos/editar/{produto.Id}")" class="btn btn-info"><span class="fa fa-search"></span></NavLink> 
+        <NavLink href="@($"produtos/detalhes/{produto.Id}")" class="btn btn-warning"><span class="fa fa-pencil-alt"></span></NavLink> 
+        <NavLink href="@($"produtos/excluir/{produto.Id}")" class="btn btn-danger"><span class="fa fa-trash"></span></NavLink>
+    </TemplateColumn>
+</QuickGrid>
+
+@code {
+    private ApplicationDbContext context = default!;
+
+    protected override void OnInitialized()
+    {
+        context = DbFactory.CreateDbContext();
+    }
+
+    public async ValueTask DisposeAsync() => await context.DisposeAsync();
+}

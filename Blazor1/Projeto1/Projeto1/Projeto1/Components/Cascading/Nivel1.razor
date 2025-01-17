@@ -1,0 +1,21 @@
+﻿@page "/cascading"
+@rendermode InteractiveServer
+
+<CascadingValue Value="@styleContext">
+    <Nivel2/>
+</CascadingValue>
+
+<div style="padding:20px; background-color:@styleContext.BackgroundColor;">
+    <p>Selecione uma cor de fundo:</p>
+    <input type="color" @bind="styleContext.BackgroundColor"/>
+</div>
+
+@code {
+    public StyleContext styleContext = new() { BackgroundColor = "#ADD8E6" };
+
+
+
+}
+
+
+

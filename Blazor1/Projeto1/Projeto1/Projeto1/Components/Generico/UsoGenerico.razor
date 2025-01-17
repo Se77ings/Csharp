@@ -1,0 +1,35 @@
+﻿@page "/uso-generico"
+
+<h3>UsoGenerico</h3>
+<TableGenerica Items="@Usuarios"
+                Headers="@headers"
+                ColumnTemplates="@columnTemplates">
+
+</TableGenerica>
+
+@code {
+    public List<Usuario> Usuarios = new()
+    {
+        new Usuario {Nome="Eduardo", Idade= 42, Email="email1@teste.com"},
+        new Usuario {Nome="Fulano", Idade= 33, Email="outroEmail@msg.com"},
+        new Usuario {Nome="Ciclano", Idade= 22, Email="zxcorg@emails.com"}
+    };
+
+    public List<string> headers = new(){ "Nome", "Idade", "Email" };
+
+    public List<Func<Usuario, object>> columnTemplates = new() 
+    {
+        item => item.Nome,
+        item => item.Idade.ToString(),
+        item => item.Email
+    };
+
+
+
+    public class Usuario
+    {
+        public string? Nome { get; set; }
+        public int Idade { get; set; }
+        public string? Email { get; set; }
+    }
+}

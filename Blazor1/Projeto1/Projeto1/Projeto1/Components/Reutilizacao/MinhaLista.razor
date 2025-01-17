@@ -1,0 +1,16 @@
+﻿@page "/minha-lista"
+@rendermode InteractiveServer
+
+<h3>Componentes Reutilizaveis:</h3>
+@foreach (var item in Tasks)
+{
+    <TodoItem ItemText="@item" OnDelete="HandleDelete"/>
+}
+@code {
+    private List<string> Tasks = new List<string> { "Comprar Leite", "Enviar Relatório", "Pagar contas" };
+
+    private void HandleDelete(string item)
+    {
+        Tasks.Remove(item);
+    }
+}

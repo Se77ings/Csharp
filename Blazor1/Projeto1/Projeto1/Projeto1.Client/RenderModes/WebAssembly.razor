@@ -1,0 +1,16 @@
+﻿@* @rendermode InteractiveWebAssembly
+ *@
+<h3>Client-side Rendering (CSR)</h3>
+<div class="d-flex flex-row">
+
+    <button class="btn btn-primary" @onclick="foo">Clica Aqui!</button>
+    <p class="align-self-center m-0">@message</p>
+</div>
+@code {
+    private string message = "Não Clicou";
+
+    void foo()
+    {
+        message = "Clicado em: " + DateTime.Now.ToString();
+    }
+}

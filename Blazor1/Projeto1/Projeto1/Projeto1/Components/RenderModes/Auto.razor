@@ -1,0 +1,21 @@
+﻿@rendermode InteractiveAuto
+
+<h3>Automatic (Auto)</h3>
+<div class="d-flex flex-row">
+
+<button class="btn btn-primary" @onclick="foo">Clica Aqui!</button>
+<p class="align-self-center m-0">@message</p>
+
+</div>
+<div class="mx-2 my-1 border bg-opacity-10 bg-warning p-2">
+<p>Esse método, não funciona muito bem, porque todo método interativo tem que funcionar no client, aqui estou criando ele apenas no servidor</p>
+<p>Ele até funciona, mas não quando funciona muito bem quando algum outro componente webassembly trabalhar em paralelo..</p>
+</div>
+@code {
+    private string message = "Não Clicou";
+
+    void foo()
+    {
+        message = "Clicado em: " + DateTime.Now.ToString();
+    }
+}

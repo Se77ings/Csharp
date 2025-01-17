@@ -1,0 +1,34 @@
+﻿@rendermode InteractiveServer
+@page "/render-fragment"
+
+<h3>Render Fragment e ChildContent</h3>
+
+<Accordion>
+    <AccordionItem Title="Seção 1">
+        <p>Conteúdo da seção 1</p>
+    </AccordionItem>
+    <AccordionItem Title="Seção 2">
+        <p>Conteúdo da seção 2</p>
+    </AccordionItem>
+    <AccordionItem Title="Seção 3">
+        <p>Conteúdo da seção 3</p>
+    </AccordionItem>
+</Accordion>
+
+<br /><br /><br />
+
+<h3>Vários RenderChilds diferentes:</h3>
+<CardComponent>
+    <Cabecalho>
+        <h5>Conteudo do Cabeçalho</h5>
+    </Cabecalho>
+    <Corpo>
+        <p>Conteúdo do Corpo</p>
+    </Corpo>
+    <Rodape>
+        <small>Conteudo do Rodapé</small>
+    </Rodape>
+</CardComponent>
+@code {
+
+}

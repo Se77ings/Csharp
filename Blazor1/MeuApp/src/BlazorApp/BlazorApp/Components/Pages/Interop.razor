@@ -1,0 +1,35 @@
+﻿@page "/interop"
+@rendermode InteractiveServer
+@inject IJSRuntime JS
+@* @onclick="@(()=> CallJS("showJavascriptAlert","Olá Mundo")" *@
+
+<button class="btn btn-primary" @onclick=@(()=>CallJS("showJavascriptAlert", "Olá Mundo!"))> Pressione aqui</button>
+
+<script>
+    function showJavascriptAlert(mensagem) {
+        alert(mensagem)
+        callDotNetFromJS();
+    };
+
+</script>
+
+@* Não  consegui fazer rodar esse exemplo abaixo... como a IDE também não está ajudando, vou deixar para rever isso no futuro. *@
+
+<script>
+    function callDotNetFromJS(mensagem) {
+        DotNet.invokeMethodAsync('BlazorApp', 'CallDotNet', mensagem).then(data => console.log(data)
+        };
+        
+</script>
+@code {
+    private async Task CallJS(string metodo, string mensagem)
+    {
+        await JS.InvokeAsync<string>(metodo, mensagem);
+    }
+
+    [JSInvokable]
+    public static void CallDotNet(string mensagem)
+    {
+        Console.WriteLine(mensagem);
+    }
+}

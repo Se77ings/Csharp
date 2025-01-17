@@ -1,0 +1,95 @@
+﻿@page "/produtos/novo"
+@attribute [Authorize]
+
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.EntityFrameworkCore
+@using BlazorApp.Components.Produtos
+
+@inject IDbContextFactory<BlazorApp.Data.ApplicationDbContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Create</PageTitle>
+
+<h1>Novo Produto</h1>
+
+<h2>Produto</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <EditForm method="post" Model="Produto" OnValidSubmit="AddProduto" FormName="create" Enhance>
+            <DataAnnotationsValidator />
+            <ValidationSummary class="text-danger" role="alert" />
+            <div class="mb-3">
+                <label for="nome" class="form-label">Nome:</label>
+                <InputText id="nome" @bind-Value="Produto.Nome" class="form-control" aria-required="true" />
+                <ValidationMessage For="() => Produto.Nome" class="text-danger" />
+            </div>
+            <div class="mb-3">
+                <label for="descricao" class="form-label">Descrição:</label>
+                <InputText id="descricao" @bind-Value="Produto.Descricao" class="form-control" />
+                <ValidationMessage For="() => Produto.Descricao" class="text-danger" />
+            </div>
+            <div class="mb-3">
+                <label for="categoria" class="form-label">Categoria:</label>
+                @* <InputText id="categoria" @bind-Value="Produto.Categoria" class="form-control" aria-required="true" /> *@
+                <InputSelect id="categoria" @bind-Value="Produto.Categoria" class="form-control" aria-required="true">
+                    <option value="" hidden>Selecione uma categoria..</option>
+                    @foreach (string item in Categorias)
+                    {
+                        <option value="@item">
+                            @item
+                        </option>
+                    }
+                </InputSelect>
+                <ValidationMessage For="() => Produto.Categoria" class="text-danger" />
+            </div>
+            <div class="mb-3">
+                <label for="preco" class="form-label">Preço:</label>
+                <InputNumber id="preco" @bind-Value="Produto.Preco" class="form-control" />
+                <ValidationMessage For="() => Produto.Preco" class="text-danger" />
+            </div>
+            <div class="mb-3">
+                <label for="disponivelestoque" class="form-label">Disponível?: </label>
+                <InputCheckbox id="disponivelestoque" @bind-Value="Produto.DisponivelEstoque" class="form-check-input" aria-required="true" />
+                <ValidationMessage For="() => Produto.DisponivelEstoque" class="text-danger" />
+            </div>
+            <div class="mb-3">
+                <label for="datavalidade" class="form-label">DataValidade:</label>
+                <InputDate id="datavalidade" @bind-Value="Produto.DataValidade" class="form-control" aria-required="true" />
+                <ValidationMessage For="() => Produto.DataValidade" class="text-danger" />
+            </div>
+            <div class="d-flex justify-content-between flex-row-reverse">
+
+                <button type="submit" class="btn btn-primary">Criar</button>
+                <div class="btn btn-warning">
+                    <a href="/produtos">Voltar</a>
+                </div>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+
+@code {
+    [SupplyParameterFromForm]
+    private Produto Produto { get; set; } 
+
+    private readonly List<string> Categorias = new() { "Eletrônicos", "Vestuário", "Alimentos" };
+
+    // To protect from overposting attacks, see https://learn.microsoft.com/aspnet/core/blazor/forms/#mitigate-overposting-attacks.
+    private async Task AddProduto()
+    {
+        using var context = DbFactory.CreateDbContext();
+        context.Produto.Add(Produto);
+        await context.SaveChangesAsync();
+        NavigationManager.NavigateTo("/produtos");
+    }
+
+    protected override void OnInitialized()
+    {
+        Produto ??= new()
+            {
+                DataValidade = DateTime.UtcNow
+            };
+    }
+}

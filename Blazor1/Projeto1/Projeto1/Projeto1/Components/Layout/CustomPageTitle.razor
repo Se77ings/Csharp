@@ -1,0 +1,11 @@
+﻿@code {
+    [Parameter]
+    public string? Titulo { get; set; }
+}
+
+@{
+    var tituloCompleto = $"{Titulo} | Meu App";
+}
+
+<PageTitle>@tituloCompleto</PageTitle>
+
