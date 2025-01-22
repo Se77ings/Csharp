@@ -1,0 +1,18 @@
+﻿<h3>Form:</h3>
+
+<EditForm Model="Formulario">
+    <InputSelect TValue="Formulario">
+        <option selected>Selecione uma opção</option>
+        <option value="Despesa">Despesa</option>
+        <option value="Salario">Salario</option>
+    </InputSelect>
+</EditForm>
+
+@code {
+
+    public class Formulario
+    {
+        public string TipoOBJ { get; set; }
+    }
+
+}

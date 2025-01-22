@@ -1,0 +1,22 @@
+﻿@foreach (GastoMes gasto in gastos)
+{
+    <tr class="border m-1 p-2 bg-danger text-white">
+        <td>@gasto.Descricao</td>
+        @if (gasto.TipoGasto == TipoGasto.Cartao)
+        {
+            <td>Cartão</td>
+        }
+        else
+        {
+            <td></td>
+        }
+        <td>R$ @gasto.Valor</td>
+    </tr>
+
+
+
+}
+@code {
+    [Parameter]
+    public List<GastoMes> gastos { get; set; } = new List<GastoMes>();
+}
