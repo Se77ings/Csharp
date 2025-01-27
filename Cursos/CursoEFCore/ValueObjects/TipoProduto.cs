@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace CursoEFCore.ValueObjects
 {
-    internal class TipoProduto
+    public enum TipoProduto
     {
+        MercadoriaParaRevenda,
+        Embalagem,
+        Servico 
     }
 }

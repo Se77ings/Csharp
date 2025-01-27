@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CursoEFCore.ValueObjects
+namespace Financas.Business.Models
 {
-    public enum StatusPedido
+    public enum TipoConta
     {
-        Analise,
-        Finalizado,
-        Entregue
+        Corrente = 1,
+        Poupanca,
+        Salario
     }
 }
