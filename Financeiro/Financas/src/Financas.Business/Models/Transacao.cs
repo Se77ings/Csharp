@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Financas.Business.Models.Tipos;
 
 namespace Financas.Business.Models
 {
@@ -13,11 +14,12 @@ namespace Financas.Business.Models
         public DateTime Data { get; set; }
         public TipoTransacao TipoTransacao { get; set; }
         public Conta ContaOrigem { get; set; }
+        public Fatura Fatura { get; set; }
         // preciso ainda verificar se é cartão ou não...
 
         // EF Relations
+        public Guid ContaOrigemId { get; set; }
         public Guid FaturaId { get; set; }
-        public Fatura Fatura { get; set; }
 
         protected Transacao(string descricao, decimal valor, DateTime data, TipoTransacao tipo, Conta contaOrigem)
         {

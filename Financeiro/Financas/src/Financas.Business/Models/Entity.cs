@@ -1,12 +1,12 @@
 ﻿namespace Financas.Business.Models
 {
-    public class Entity
+    public abstract class Entity
     {
-        public Entity()
-        {
-            Id = Guid.NewGuid();    
-        }
+        public Guid Id { get; set; }
 
-        public Guid Id;
+        protected Entity()
+        {
+            Id = Guid.NewGuid();
+        }
     }
 }

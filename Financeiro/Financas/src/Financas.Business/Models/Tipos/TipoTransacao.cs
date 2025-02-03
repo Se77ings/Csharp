@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Financas.Business.Models
+namespace Financas.Business.Models.Tipos
 {
     public enum TipoTransacao
     {

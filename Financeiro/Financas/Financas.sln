@@ -12,6 +12,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Financas.Data", "src\Financ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Financas.Console", "src\Financas.Console\Financas.Console.csproj", "{73886152-FA6C-4D81-A6D8-8CECD8F1D6F9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Financas.Application", "src\Financas.Application\Financas.Application\Financas.Application.csproj", "{8D1F037C-49FF-432F-87EB-78B26D5E3371}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Financas.Application.Client", "src\Financas.Application\Financas.Application.Client\Financas.Application.Client.csproj", "{6ED38BD9-8BCC-4F5C-86B5-0E49B9F8291F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +34,14 @@ Global
 		{73886152-FA6C-4D81-A6D8-8CECD8F1D6F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73886152-FA6C-4D81-A6D8-8CECD8F1D6F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73886152-FA6C-4D81-A6D8-8CECD8F1D6F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D1F037C-49FF-432F-87EB-78B26D5E3371}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D1F037C-49FF-432F-87EB-78B26D5E3371}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D1F037C-49FF-432F-87EB-78B26D5E3371}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D1F037C-49FF-432F-87EB-78B26D5E3371}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6ED38BD9-8BCC-4F5C-86B5-0E49B9F8291F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ED38BD9-8BCC-4F5C-86B5-0E49B9F8291F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ED38BD9-8BCC-4F5C-86B5-0E49B9F8291F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ED38BD9-8BCC-4F5C-86B5-0E49B9F8291F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

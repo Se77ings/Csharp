@@ -1,4 +1,5 @@
 ﻿using Financas.Business.Models;
+using Financas.Business.Models.Tipos;
 
 namespace Financas.Consol
 {

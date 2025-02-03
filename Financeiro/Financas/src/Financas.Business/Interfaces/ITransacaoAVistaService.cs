@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Financas.Business.Models
+namespace Financas.Business.Interfaces
 {
-    public enum TipoConta
+    internal interface ITransacaoAVistaService
     {
-        Corrente = 1,
-        Poupanca,
-        Salario
     }
 }

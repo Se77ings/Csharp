@@ -3,7 +3,7 @@ using Financas.Business.Models;
 
 namespace Financas.Business.Services
 {
-    public class TransacaoService : ITransacaoService
+    public class TransacaoService 
     {
         private readonly ITransacaoRepository _transacaoRepository;
         public TransacaoService(ITransacaoRepository transacaoRepository)
