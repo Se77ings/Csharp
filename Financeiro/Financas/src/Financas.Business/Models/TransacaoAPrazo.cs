@@ -9,9 +9,10 @@ namespace Financas.Business.Models
 {
     public class TransacaoAPrazo : Transacao
     {
+        protected TransacaoAPrazo() { }
         public TransacaoAPrazo(string descricao, decimal valor, DateTime data, TipoTransacao tipo, Conta contaOrigem) : base(descricao, valor, data, tipo, contaOrigem)
         {
-            
+
         }
         public int NumeroParcelas { get; set; }
         public List<DateOnly> Vencimentos { get; set; }

@@ -9,6 +9,7 @@ namespace Financas.Business.Models
 {
     public class TransacaoAVista : Transacao
     {
+        protected TransacaoAVista() { }
         public TransacaoAVista(string descricao, decimal valor, DateTime data, TipoTransacao tipo, Conta contaOrigem) : base(descricao, valor, data, tipo, contaOrigem)
         {
 

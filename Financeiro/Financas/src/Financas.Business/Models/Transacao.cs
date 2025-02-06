@@ -20,6 +20,8 @@ namespace Financas.Business.Models
         // EF Relations
         public Guid ContaOrigemId { get; set; }
         public Guid FaturaId { get; set; }
+        //p/ o EFCore
+        protected Transacao(){        }
 
         protected Transacao(string descricao, decimal valor, DateTime data, TipoTransacao tipo, Conta contaOrigem)
         {

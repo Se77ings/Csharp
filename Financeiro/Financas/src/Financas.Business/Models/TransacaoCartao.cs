@@ -16,7 +16,9 @@ namespace Financas.Business.Models
         }
         public string NomeCartao { get; set; }
         public List<CartaoItem> CartaoItens { get; set; }
-        
+
+        protected TransacaoCartao() { }
+
         public void AtualizarValor()
         {
             Valor = CartaoItens.Sum(c => c.Valor);
