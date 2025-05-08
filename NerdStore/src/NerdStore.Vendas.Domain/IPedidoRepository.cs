@@ -1,10 +1,4 @@
 ﻿using NerdStore.Core.Data;
-using NerdStore.Vendas.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NerdStore.Vendas.Domain
 {
@@ -15,10 +9,12 @@ namespace NerdStore.Vendas.Domain
         Task<Pedido> ObterPedidoRascunhoPorClienteId(Guid clienteId);
         void Adicionar(Pedido pedido);
         void Atualizar(Pedido pedido);
-
         Task<PedidoItem> ObterItemPorId(Guid id);
         Task<PedidoItem> ObterItemPorPedido(Guid pedidoId, Guid produtoId);
         void AdicionarItem(PedidoItem pedidoItem);
         void AtualizarItem(PedidoItem pedidoItem);
+        public void RemoverItem(PedidoItem pedidoItem);
+
+        public Task<Voucher> ObterVoucherPorCodigo(string codigo);
     }
 }

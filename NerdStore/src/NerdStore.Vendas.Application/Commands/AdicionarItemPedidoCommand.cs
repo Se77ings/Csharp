@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NerdStore.Vendas.Application.Commands
 {
-    public class AdicionarItemPedidoCommand : Command
+    public partial class AdicionarItemPedidoCommand : Command
 
     {
 
@@ -23,7 +23,7 @@ namespace NerdStore.Vendas.Application.Commands
         {
             ClienteId = clienteId;
             ProdutoId = produtoId;
-            Nome = nome; 
+            Nome = nome;
             Quantidade = qtd;
             ValorUnitario = valorUnit;
 
@@ -66,5 +66,6 @@ namespace NerdStore.Vendas.Application.Commands
 
             }
         }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using NerdStore.Core.DomainObjects;
+﻿using FluentValidation.Results;
+using NerdStore.Core.DomainObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace NerdStore.Vendas.Domain
     {
         public int Codigo { get; private set; }
         public Guid ClienteId { get; private set; }
-        public Guid VoucherId { get; private set; }
+        public Guid? VoucherId { get; private set; }
         public bool VoucherUtilizado { get; private set; }
         public decimal Desconto { get; private set; }
         public decimal ValorTotal { get; private set; }
@@ -36,11 +37,16 @@ namespace NerdStore.Vendas.Domain
             ValorTotal = valorTotal;
             _pedidoItems = new List<PedidoItem>();
         }
-        public void AplicarVoucher(Voucher voucher)
+        public ValidationResult AplicarVoucher(Voucher voucher)
         {
+            var validationResult = voucher.ValidarSeAplicavel();
+            if (!validationResult.IsValid) return validationResult;
+
             Voucher = voucher;
             VoucherUtilizado = true;
             CalcularValorPedido();
+
+            return validationResult;
         }
 
         public void CalcularValorPedido()
@@ -159,7 +165,7 @@ namespace NerdStore.Vendas.Domain
 
             public static Pedido NovoPedidoRascunho(Guid clienteId)
             {
-                var pedido =  new Pedido
+                var pedido = new Pedido
                 {
                     ClienteId = clienteId,
                 };

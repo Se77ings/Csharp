@@ -1,0 +1,41 @@
+﻿@if (ViewData.ModelState.ErrorCount > 0)
+{
+    <div class="alert alert-danger d-flex flex-column">
+        <button type="button" class="btn btn-close align-self-end" data-dismiss="alert"></button>
+        <h3 id="msgRetorno">Algo deu errado:</h3>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    </div>
+}
+
+@if (TempData["Erro"] != null)
+{
+    <div class="alert alert-danger d-flex flex-column">
+        <button type="button" class="btn btn-close align-self-end" data-dismiss="alert"></button>
+        <h3 id="msgRetorno">Algo deu errado:</h3>
+        <p>@TempData["Erros"]</p>
+    </div>
+}
+
+@if (TempData["Erros"] != null)
+{
+    <div class="alert alert-danger d-flex flex-column">
+        <button type="button" class="btn btn-close align-self-end" data-dismiss="alert"></button>
+        <h3 id="msgRetorno">Algo deu errado:</h3>
+        @{
+            var erros = TempData["Erros"] as string[];
+            foreach (var erro in erros)
+            {
+                <p>@erro</p>
+            }
+        }
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.Sucesso))
+{
+    <div class="alert alert-danger d-flex flex-column">
+        <button type="button" class="btn btn-close align-self-end" data-dismiss="alert">x</button>
+        <h3 id="msgRetorno">Algo deu errado:</h3>
+        <p>@ViewBag.Sucesso<p>
+    </div>
+}

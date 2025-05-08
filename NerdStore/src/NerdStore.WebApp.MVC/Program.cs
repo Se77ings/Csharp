@@ -6,6 +6,7 @@ using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using NerdStore.WebApp.MVC.Setup;
 using NerdStore.Catalogo.Data;
+using NerdStore.Vendas.Data;
 
 namespace NerdStore.WebApp.MVC
 {
@@ -17,13 +18,15 @@ namespace NerdStore.WebApp.MVC
 
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-            var catalogoConnectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'CatalogoConnection' not found.");
-            
+
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
 
             builder.Services.AddDbContext<CatalogoContext>(options =>
-                options.UseSqlServer(catalogoConnectionString));
+                options.UseSqlServer(connectionString));
+
+            builder.Services.AddDbContext<VendasContext>(options =>
+            options.UseSqlServer(connectionString));
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
