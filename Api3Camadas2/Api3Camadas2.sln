@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinhaApp.Business", "src\MinhaApp.Business\MinhaApp.Business.csproj", "{21A31B5B-C3CB-4FD2-872D-04FB49BC8B7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinhaApp.Infra", "src\MinhaApp.Infra\MinhaApp.Infra.csproj", "{7A533BD1-8960-4D79-939D-BD56B6DD9BBE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{21A31B5B-C3CB-4FD2-872D-04FB49BC8B7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21A31B5B-C3CB-4FD2-872D-04FB49BC8B7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21A31B5B-C3CB-4FD2-872D-04FB49BC8B7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21A31B5B-C3CB-4FD2-872D-04FB49BC8B7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A533BD1-8960-4D79-939D-BD56B6DD9BBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A533BD1-8960-4D79-939D-BD56B6DD9BBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A533BD1-8960-4D79-939D-BD56B6DD9BBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A533BD1-8960-4D79-939D-BD56B6DD9BBE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {339941E5-6014-4DEA-972E-5F7634CE5610}
+	EndGlobalSection
+EndGlobal
