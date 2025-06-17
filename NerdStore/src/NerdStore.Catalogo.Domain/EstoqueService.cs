@@ -41,7 +41,7 @@ namespace NerdStore.Catalogo.Domain
 
             if (!produto.PossuiEstoque(quantidade))
             {
-                await _mediator.PublicarNotificacao(new DomainNotification("Estoque", $"Produto - {produto.Nome} sem estoque"))
+                await _mediator.PublicarNotificacao(new DomainNotification("Estoque", $"Produto - {produto.Nome} sem estoque"));
                     return false;
             }
 

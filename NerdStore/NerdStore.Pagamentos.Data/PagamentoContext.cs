@@ -10,11 +10,12 @@ namespace NerdStore.Pagamentos.Data
     {
         private readonly IMediatrHandler _mediatorHandler;
 
-        public PagamentoContext(DbContextOptions<PagamentoContext> options, IMediatrHandler rebusHandler)
+        public PagamentoContext(DbContextOptions<PagamentoContext> options ,IMediatrHandler rebusHandler)
             : base(options)
         {
             _mediatorHandler = rebusHandler ?? throw new ArgumentNullException(nameof(rebusHandler));
         }
+
 
         public DbSet<Pagamento> Pagamentos { get; set; }
         public DbSet<Transacao> Transacoes { get; set; }

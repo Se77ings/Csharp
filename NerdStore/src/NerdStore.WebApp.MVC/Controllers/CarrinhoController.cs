@@ -113,7 +113,7 @@ namespace NerdStore.WebApp.MVC.Controllers
             var carrinho = await _pedidoQueries.ObterCarrinhoCliente(ClienteId);
 
             var command = new IniciarPedidoCommand(carrinho.PedidoId, ClienteId, carrinho.ValorTotal, carrinhoViewModel.Pagamento.NomeCartao,
-                carrinhoViewModel.Pagamento.NumeroCartao, carrinhoViewModel.Pagamento.ExpiracaoCartao, carrinhoViewModel.Pagamento.CvvCartao);
+                carrinhoViewModel.Pagamento.NumeroCartao, carrinhoViewModel.Pagamento.ExpiracaoCartao, "944"); //  Daria muito trabalho refazer esse exemplo para pegar o CVV do cartão de crédito, então estou usando um valor fixo aqui.
 
             await _mediatorHandler.EnviarComando(command);
 

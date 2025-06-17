@@ -11,18 +11,16 @@ namespace NerdStore.Vendas.Application.Commands
         public decimal ValorTotal { get; private set; }
         public string NomeCartao { get; private set; }
         public string NumeroCartao { get; private set; }
-        public string MesValidade { get; private set; }
-        public string AnoValidade { get; private set; }
+        public string ExpiracaoCartao { get; private set; }
         public string Cvv { get; private set; }
-        public IniciarPedidoCommand(Guid pedidoId, Guid clienteId, decimal valorTotal, string nomeCartao, string numeroCartao, string mesValidade, string anoValidade, string cvv)
+        public IniciarPedidoCommand(Guid pedidoId, Guid clienteId, decimal valorTotal, string nomeCartao, string numeroCartao, string expiracaoCartao, string cvv)
         {
             PedidoId = pedidoId;
             ClienteId = clienteId;
             ValorTotal = valorTotal;
             NomeCartao = nomeCartao;
             NumeroCartao = numeroCartao;
-            MesValidade = mesValidade;
-            AnoValidade = anoValidade;
+            ExpiracaoCartao = expiracaoCartao;
             Cvv = cvv;
         }
     }
@@ -56,16 +54,8 @@ public class IniciarPedidoValidation : AbstractValidator<IniciarPedidoCommand>
             .CreditCard()
             .WithMessage("O número do cartão é inválido");
 
-        RuleFor(c => c.AnoValidade)
-            .NotEmpty()
-            .WithMessage("O ano de validade do cartão não foi informado")
-            .Length(4)
-            .WithMessage("O ano de validade do cartão deve ter 4 dígitos")
-            .Must(x => int.TryParse(x, out _))
-            .WithMessage("O ano de validade do cartão deve ser um número");
-
         RuleFor(c => c.Cvv)
             .Length(3, 4)
-            .WithMessage("O CVV do cartão deve ter entre 3 e 4 dígitos")
+            .WithMessage("O CVV do cartão deve ter entre 3 e 4 dígitos");
     }
 }
