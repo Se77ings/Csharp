@@ -1,0 +1,44 @@
+Me parece que estou num caminho muito bom.
+Fiz uns testes no excel, aonde instancio minhas classes, e fui bem feliz, funcionou bem como deveria, e não encontrei falhas de lógica.
+
+Vou salvar um print desse teste. E anotar próximos passos:
+
+- [x] Criar Classes
+	- [x] Adicionar métodos e funções das classes (Adicionar Riqueza)
+	- [x] Entidade DespesaCartao ainda está anêmica, preciso de métodos para persistir na lista, e instanciar a Despesa
+- [x] Criar Mappings (1h)
+	-[x] Map de FK's
+- [x] Criar Banco de dados, Migrations, e API. (1h42)
+- [x] Criar Repositórios 
+	- [ ] Criar métodos ExistsAsnyc && ExistsOtherAsync para todas entidades
+		- Não fiz ainda, pois preciso primeiro resolver outros problemas, mas quando for fazer, lembrar, de: apenas notificar que ja existe um com mesmos valores, pois pode haver um valor "duplicado" mas que na verdade está correto.
+- [x] Validar Classes
+- [x] Criar Services 
+	- [x] Criação de Dto Models
+		- [*] Implicit operator para models de Despesas.
+			- Talvez nem precise, vi hoje no trabalho uma ocasião onde o implicit operator me atrapalhou (mas foi a primeira em sei la quanto tempo.........)
+	- [x] Criação de Interfaces
+	- [x] Implementar Services
+	- [x] Resolver Dependências
+	- [*] Criar entidade de Result para retornar succes e Messages/Errors (Necessita Teste)
+- [ ] Criar Controllers
+
+-[ ] Front-end's (Blazor, App, Windows Forms...) problema pro Gabriel do Futuro
+
+
+Anotações:
+***************************************************************************************************************************************************************
+- Próximo desenvolvimento:
+
+	- Pode ser uma boa começar pela classe de Serviço ObrigaçãoServices. fazer ela, e deixar os TODO's. para serem implementados depois
+		- Assim que terminar essa classe, fazer o arquivo Configuration (resolução de dependências das Services)
+			- Assim que terminar, resolver os TODO's. inclusive, alguns deles, ja fui adicionando na checklist acima.
+			
+***************************************************************************************************************************************************************
+
+
+Me arrependi bastante de ter feito a entidade ContasAPagar abstrata, se tivesse feito um TPH daria muito menos problema agora nas repositories
+E também não estou gostando de como está ficando...
+Talvez no futuro, eu possa refatorar isto. Mas por hora, seguirei dessa maneira, já que também é funcional.
+
+Padronizar a língua.. acho que é melhor trazer tudo para Português.
